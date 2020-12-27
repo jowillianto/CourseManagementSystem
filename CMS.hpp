@@ -312,3 +312,52 @@ class Course : public PCourse{
             
         }
 };
+
+class School{
+    public:
+        School(){
+            _CourseId_      = 0;
+            _StudentId_     = 0;
+            _LecturerId_    = 0;
+        }
+        Course course(const long& Index){
+            return _CourseList_[Index];
+        }
+        Student student(const long& Index){
+            return _StudentList_[Index];
+        }
+        Lecturer lecturer(const long& Index){
+            return _LecturerList_[Index];
+        }
+
+        void addCourse(const Course& course){
+            _CourseList_.push_back(course);
+            _CourseId_ += 1;
+        }
+        void addLecturer(const Lecturer& lecturer){
+            _LecturerList_.push_back(lecturer);
+            _LecturerId_ += 1;
+        }
+        void addStudent(const Student& student){
+            _StudentList_.push_back(student);
+            _StudentId_   += 1;
+        }
+
+        void deleteStudent(const int& Id){
+            _StudentList_.erase(_StudentList_.begin() + Id);
+        }
+        void deleteCourse(const int& Id){
+            _CourseList_.erase(_CourseList_.begin() + Id);
+        }
+        void deleteLecturer(const int& Id){
+            _LecturerList_.erase(_LecturerList_.begin() + Id);
+        }
+    private:
+        std::vector <Course> _CourseList_;
+        std::vector <Lecturer> _LecturerList_;
+        std::vector <Student> _StudentList_;
+
+        int _CourseId_;
+        int _LecturerId_;
+        int _StudentId_;
+};
